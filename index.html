@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AntWave: Antenna Microwave & RF Toolkit</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 650px;
+            padding: 40px;
+            background-color: #1E1E1E;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+        .header-center { text-align: center; }
+        h1 { color: #FFFFFF; font-weight: 600; letter-spacing: 1px; margin-bottom: 5px;}
+        .subtitle { color: #A0A0A0; font-size: 1.1em; margin-bottom: 25px; }
+        .highlight-badge {
+            display: inline-flex; /* ⬇️ 这里改成了 inline-flex，让图标和文字对齐更完美 ⬇️ */
+            align-items: center;
+            background-color: #2A2A2A;
+            color: #81C784;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+        }
+        /* ⬇️ 这里定义了盾牌图标的样式 ⬇️ */
+        .badge-icon {
+            margin-right: 8px; /* 图标和文字的间距 */
+            width: 16px;
+            height: 16px;
+        }
+        h2 { color: #FFFFFF; font-size: 1.2em; margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 8px;}
+        ul { padding-left: 20px; color: #CCCCCC; }
+        li { margin-bottom: 12px; }
+        strong { color: #81C784; font-weight: 500; }
+        .links { text-align: center; margin-top: 40px; }
+        .links a {
+            color: #A0A0A0;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.95em;
+            transition: color 0.2s;
+        }
+        .links a:hover { color: #FFFFFF; text-decoration: underline; }
+        .footer { text-align: center; margin-top: 40px; font-size: 0.85em; color: #555555; }
+        .support-text {
+            color: #A0A0A0;
+            margin: 0 15px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-center">
+            <h1>AntWave</h1>
+            <div class="subtitle">Fast, professional RF, microwave, and antenna engineering toolkit.</div>
+            <div class="highlight-badge">
+                <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                </svg>
+                All calculations run locally — no network required.
+            </div>
+        </div>
+        
+        <h2>Core Features</h2>
+        <ul>
+            <li><strong>Link Budget Analysis</strong> — Microwave, satellite, and radar link calculations with complete system parameters.</li>
+            <li><strong>Antenna Metrics</strong> — Gain, beamwidth, G/T, noise temperature, pointing & surface accuracy loss.</li>
+            <li><strong>Atmospheric Modeling</strong> — Interactive charts with real-time HUD readout. Sky noise and attenuation data based on ITU-R P.372/P.676/P.838 (1 GHz – 1 THz).</li>
+            <li><strong>Transmission Line Tools</strong> — Characteristic impedance, waveguide parameters, skin depth.</li>
+        </ul>
+        
+        <div class="links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="index.html" class="support-text">Support: rf.microwave.lab@outlook.com</a>
+        </div>
+        
+        <div class="footer">
+            &copy; 2026 RF Microwave Lab. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
