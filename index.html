@@ -66,8 +66,57 @@
             margin: 0 15px;
             font-size: 0.95em;
         }
+        /* 提示框样式 */
+        #toast {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: #333;
+            color: #81C784; /* 匹配你的罗勒绿主题色 */
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 0.9em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 1px solid #444;
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
     </style>
 </head>
+<script>
+function copyEmail(element) {
+    const email = "rf.microwave.lab@outlook.com"; // 这里填写你指定的对外联系邮箱
+    
+    // 使用现代浏览器剪贴板 API
+    navigator.clipboard.writeText(email).then(() => {
+        // 显示提示框
+        const toast = document.getElementById("toast");
+        toast.className = "show";
+        
+        // 3秒后消失
+        setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        
+        // 可选：短时间内改变文字反馈
+        const originalText = element.innerText;
+        element.innerText = "Email Copied!";
+        setTimeout(() => { element.innerText = originalText; }, 2000);
+    }).catch(err => {
+        // 兜底方案：如果浏览器禁用剪贴板权限，直接弹窗显示
+        alert("Support Email: " + email);
+    });
+}
+</script>
 <body>
     <div class="container">
         <div class="header-center">
@@ -91,8 +140,10 @@
         
         <div class="links">
             <a href="privacy.html">Privacy Policy</a>
-            <a href="mailto:rf.microwave.lab@outlook.com">Contact Support</a>
+            <a href="javascript:void(0)" onclick="copyEmail(this)" id="emailBtn">Contact Support</a>
         </div>
+
+<div id="toast">Email address copied!</div>v
         
         <div class="footer">
             &copy; 2026 RF Microwave Lab. All rights reserved.
