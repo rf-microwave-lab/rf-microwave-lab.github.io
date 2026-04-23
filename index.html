@@ -221,20 +221,6 @@ function copyEmail(element) {
             </div>
         </div>
 
----
-
-### 💡 为什么这样设计？
-
-1.  **视觉统一性**：按钮使用了你 CSS 中定义的 `#81C784` 色值和 12px 左右的圆角，确保和顶部的 `container` 风格一致。
-2.  **透明遮罩方案**：对于 Android 按钮，我设置了 `opacity: 0.4` 和 `filter: grayscale(0.8)`。这不仅传达了“目前不可用”的信息，还能让用户知道你已经有 Android 版本的计划，从而留住 Android 用户。
-3.  **响应式布局**：使用了 `flex-wrap: wrap`。如果工程师在屏幕较小的手机上打开官网，两个按钮会自动垂直排列，不会超出边框。
-4.  **去图片化**：图标采用了内联 SVG 路径，加载速度极快，且在 Retina 屏幕上绝对清晰。
-
-### 🚀 下一步操作
-* **iOS 链接**：待一周后你提交审核并获得 App ID 后，记得把 `href` 里的占位符换掉。
-* **Android 状态**：等到封闭内测结束，你只需要去掉 `disabled` 类名，并将 `div` 改回 `a` 标签即可瞬间“亮起”入口。
-
-**这套排版加上去后，官网的“闭环”就完成了。你觉得这个按钮的尺寸和色调是否符合你对 AntWave “专业感”的预期？**
         <div class="links">
             <a href="privacy.html">Privacy Policy</a>
             <a href="javascript:void(0)" onclick="copyEmail(this)" id="emailBtn">Contact Support</a>
