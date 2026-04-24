@@ -47,25 +47,35 @@
             height: 16px;
         }
         
-        /* ⬇️ 新增：分层内容标题样式 ⬇️ */
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 30px;
+            margin-top: 35px;
             border-bottom: 1px solid #333;
             padding-bottom: 8px;
         }
         h3 { color: #FFFFFF; font-size: 1.1em; margin: 0; font-weight: 600;}
         .platform-tag {
-            font-size: 0.75em;
-            font-weight: 500;
-            padding: 2px 8px;
-            border-radius: 4px;
+            font-size: 0.72em;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .tag-available { color: #81C784; background: rgba(129, 199, 132, 0.1); }
-        .tag-exclusive { color: #888; background: rgba(255, 255, 255, 0.05); }
-        /* ⬆️ 新增结束 ⬆️ */
+        /* 罗勒绿标签：代表可用性 */
+        .tag-available { 
+            color: #81C784; 
+            background: rgba(129, 199, 132, 0.15);
+            border: 1px solid rgba(129, 199, 132, 0.3);
+        }
+        /* ⬇️ 优化后的 Pro 标签：冷银色，既专业又清晰 ⬇️ */
+        .tag-exclusive { 
+            color: #B0BEC5; 
+            background: rgba(176, 190, 197, 0.1); 
+            border: 1px solid rgba(176, 190, 197, 0.4);
+        }
 
         ul { padding-left: 20px; color: #CCCCCC; margin-top: 15px; }
         li { margin-bottom: 12px; }
@@ -131,30 +141,12 @@
             filter: grayscale(0.8);
             cursor: not-allowed;
             border-color: #555;
-            position: relative;
         }
-        .btn-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 12px;
-            fill: currentColor;
-        }
-        .btn-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-            text-align: left;
-        }
+        .btn-icon { width: 24px; height: 24px; margin-right: 12px; fill: currentColor; }
+        .btn-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
         .btn-text .small { font-size: 0.7em; opacity: 0.8; }
         .btn-text .big { font-size: 1.05em; font-weight: 600; }
-        .coming-soon-tag {
-            font-size: 0.7em;
-            background: #444;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-top: 4px;
-            display: inline-block;
-        }
+        .coming-soon-tag { font-size: 0.7em; background: #444; padding: 2px 6px; border-radius: 4px; margin-top: 4px; display: inline-block; }
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
     </style>
@@ -164,11 +156,8 @@ function showToast(message) {
     const toast = document.getElementById("toast");
     toast.innerText = message;
     toast.className = "show";
-    setTimeout(function(){ 
-        toast.className = toast.className.replace("show", ""); 
-    }, 3000);
+    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
 }
-
 function copyEmail(element) {
     const email = "rf.microwave.lab@outlook.com";
     navigator.clipboard.writeText(email).then(() => {
@@ -176,9 +165,7 @@ function copyEmail(element) {
         const originalText = element.innerText;
         element.innerText = "Email Copied!";
         setTimeout(() => { element.innerText = originalText; }, 2000);
-    }).catch(err => {
-        alert("Support Email: " + email);
-    });
+    }).catch(err => { alert("Support Email: " + email); });
 }
 </script>
 <body>
@@ -203,7 +190,7 @@ function copyEmail(element) {
                 </div>
             </a>
 
-            <div class="download-btn disabled" onclick="showToast('Google Play version coming soon!')" title="Currently in closed beta testing">
+            <div class="download-btn disabled" onclick="showToast('Google Play version coming soon!')">
                 <svg class="btn-icon" viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
                 <div class="btn-text">
                     <span class="small">Get it on</span>
@@ -215,7 +202,7 @@ function copyEmail(element) {
         
         <div class="section-header">
             <h3>Core Features (Essentials)</h3>
-            <span class="platform-tag tag-available">● Available on Android & iOS</span>
+            <span class="platform-tag tag-available">● Android & iOS</span>
         </div>
         <ul>
             <li><strong>20+ Engineering Modules</strong> — A comprehensive suite of high-precision tools including Antenna Gain, Beamwidth, Axial Ratio, Free Space Loss, Doppler Shift, Reflection Coefficient, and more.</li>
@@ -225,22 +212,19 @@ function copyEmail(element) {
 
         <div class="section-header">
             <h3>Advanced System Analysis (Pro)</h3>
-            <span class="platform-tag tag-exclusive">● Exclusive to iOS (Pro Features)</span>
+            <span class="platform-tag tag-exclusive">● iOS (Pro Features)</span>
         </div>
         <ul>
-            <li><strong>Link Budget Analysis</strong> — Microwave, satellite, and radar link calculations with system parameter support.</li>
+            <li><strong>Link Budget Analysis</strong> — Microwave, satellite, radar and RF link calculations with system parameter support.</li>
             <li><strong>Atmospheric Modeling</strong> — Interactive charts with real-time HUD readout. Sky noise temperature, atmospheric and rain attenuation data based on ITU-R P.372/P.676/P.838 (1 GHz – 1 THz).</li>
         </ul>
+        
         <div class="links">
             <a href="privacy.html">Privacy Policy</a>
-            <a href="javascript:void(0)" onclick="copyEmail(this)" id="emailBtn">Contact Support</a>
+            <a href="javascript:void(0)" onclick="copyEmail(this)">Contact Support</a>
         </div>
-
         <div id="toast">Email address copied!</div>
-        
-        <div class="footer">
-            &copy; 2026 RF Microwave Lab. All rights reserved.
-        </div>
+        <div class="footer">&copy; 2026 RF Microwave Lab. All rights reserved.</div>
     </div>
 </body>
 </html>
