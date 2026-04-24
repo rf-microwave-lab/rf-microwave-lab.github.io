@@ -30,7 +30,7 @@
         h1 { color: #FFFFFF; font-weight: 600; letter-spacing: 1px; margin-bottom: 5px;}
         .subtitle { color: #A0A0A0; font-size: 1.1em; margin-bottom: 25px; }
         .highlight-badge {
-            display: inline-flex; /* ⬇️ 这里改成了 inline-flex，让图标和文字对齐更完美 ⬇️ */
+            display: inline-flex; 
             align-items: center;
             background-color: #2A2A2A;
             color: #81C784;
@@ -41,14 +41,33 @@
             margin-bottom: 20px;
             border: 1px solid #333;
         }
-        /* ⬇️ 这里定义了盾牌图标的样式 ⬇️ */
         .badge-icon {
-            margin-right: 8px; /* 图标和文字的间距 */
+            margin-right: 8px;
             width: 16px;
             height: 16px;
         }
-        h2 { color: #FFFFFF; font-size: 1.2em; margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 8px;}
-        ul { padding-left: 20px; color: #CCCCCC; }
+        
+        /* ⬇️ 新增：分层内容标题样式 ⬇️ */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+        h3 { color: #FFFFFF; font-size: 1.1em; margin: 0; font-weight: 600;}
+        .platform-tag {
+            font-size: 0.75em;
+            font-weight: 500;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .tag-available { color: #81C784; background: rgba(129, 199, 132, 0.1); }
+        .tag-exclusive { color: #888; background: rgba(255, 255, 255, 0.05); }
+        /* ⬆️ 新增结束 ⬆️ */
+
+        ul { padding-left: 20px; color: #CCCCCC; margin-top: 15px; }
         li { margin-bottom: 12px; }
         strong { color: #81C784; font-weight: 500; }
         .links { text-align: center; margin-top: 40px; }
@@ -61,17 +80,12 @@
         }
         .links a:hover { color: #FFFFFF; text-decoration: underline; }
         .footer { text-align: center; margin-top: 40px; font-size: 0.85em; color: #555555; }
-        .support-text {
-            color: #A0A0A0;
-            margin: 0 15px;
-            font-size: 0.95em;
-        }
-        /* 提示框样式 */
+        
         #toast {
             visibility: hidden;
             min-width: 200px;
             background-color: #333;
-            color: #81C784; /* 匹配你的罗勒绿主题色 */
+            color: #81C784;
             text-align: center;
             border-radius: 12px;
             padding: 12px;
@@ -84,39 +98,34 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             border: 1px solid #444;
         }
-
         #toast.show {
             visibility: visible;
             animation: fadein 0.5s, fadeout 0.5s 2.5s;
         }
-        /* 下载区样式 */
+        
         .download-section {
             display: flex;
             justify-content: center;
             gap: 20px;
             margin-top: 35px;
-            flex-wrap: wrap; /* 适配小屏幕自动换行 */
+            flex-wrap: wrap;
         }
-
         .download-btn {
             display: flex;
             align-items: center;
             padding: 10px 20px;
             background-color: transparent;
-            border: 1.5px solid #81C784; /* 匹配你的罗勒绿 */
+            border: 1.5px solid #81C784;
             border-radius: 10px;
             color: #FFFFFF;
             text-decoration: none;
             transition: all 0.2s ease;
             min-width: 160px;
         }
-
         .download-btn:hover:not(.disabled) {
             background-color: #81C784;
             color: #121212;
         }
-
-        /* Android 禁用状态：半透明 + 灰度 */
         .download-btn.disabled {
             opacity: 0.4;
             filter: grayscale(0.8);
@@ -124,24 +133,20 @@
             border-color: #555;
             position: relative;
         }
-
         .btn-icon {
             width: 24px;
             height: 24px;
             margin-right: 12px;
             fill: currentColor;
         }
-
         .btn-text {
             display: flex;
             flex-direction: column;
             line-height: 1.2;
             text-align: left;
         }
-
         .btn-text .small { font-size: 0.7em; opacity: 0.8; }
         .btn-text .big { font-size: 1.05em; font-weight: 600; }
-
         .coming-soon-tag {
             font-size: 0.7em;
             background: #444;
@@ -155,25 +160,19 @@
     </style>
 </head>
 <script>
-// 这是一个通用函数，你可以传入任何你想显示的文字
 function showToast(message) {
     const toast = document.getElementById("toast");
-    toast.innerText = message; // 把文字塞进提示框
+    toast.innerText = message;
     toast.className = "show";
-    // 3秒后自动隐藏
     setTimeout(function(){ 
         toast.className = toast.className.replace("show", ""); 
     }, 3000);
 }
 
-// 邮件复制函数现在变得非常简洁，因为它直接调用上面的 showToast
 function copyEmail(element) {
     const email = "rf.microwave.lab@outlook.com";
-    
     navigator.clipboard.writeText(email).then(() => {
-        showToast("Email address copied!"); // 成功后弹出提示
-        
-        // 按钮上的文字反馈
+        showToast("Email address copied!");
         const originalText = element.innerText;
         element.innerText = "Email Copied!";
         setTimeout(() => { element.innerText = originalText; }, 2000);
@@ -214,20 +213,30 @@ function copyEmail(element) {
             </div>
         </div>
         
-        <h2>Core Features</h2>
+        <div class="section-header">
+            <h3>Core Features (Essentials)</h3>
+            <span class="platform-tag tag-available">● Available on Android & iOS</span>
+        </div>
         <ul>
-            <li><strong>Link Budget Analysis</strong> — Microwave, satellite, and radar link calculations with complete system parameters.</li>
-            <li><strong>Antenna Metrics</strong> — Gain, beamwidth, G/T, noise temperature, pointing & surface accuracy loss.</li>
-            <li><strong>Atmospheric Modeling</strong> — Interactive charts with real-time HUD readout. Sky noise and attenuation data based on ITU-R P.372/P.676/P.838 (1 GHz – 1 THz).</li>
-            <li><strong>Transmission Line Tools</strong> — Characteristic impedance, waveguide parameters, skin depth.</li>
+            <li><strong>20+ Engineering Modules</strong> — A comprehensive suite of high-precision tools including Antenna Gain, Beamwidth, Axial Ratio, Free Space Loss, Doppler Shift, Reflection Coefficient, and more.</li>
+            <li><strong>Transmission Line & Waveguide</strong> — Quick calculation of characteristic impedance, waveguide parameters, and skin depth.</li>
+            <li><strong>Professional Standard</strong> — All algorithms are calibrated to industry standards. Clean, offline, and 100% ads-free.</li>
         </ul>
-        
+
+        <div class="section-header">
+            <h3>Advanced System Analysis (Pro)</h3>
+            <span class="platform-tag tag-exclusive">● Exclusive to iOS (Pro Features)</span>
+        </div>
+        <ul>
+            <li><strong>Link Budget Analysis</strong> — Microwave, satellite, and radar link calculations with system parameter support.</li>
+            <li><strong>Atmospheric Modeling</strong> — Interactive charts with real-time HUD readout. Sky noise temperature, atmospheric and rain attenuation data based on ITU-R P.372/P.676/P.838 (1 GHz – 1 THz).</li>
+        </ul>
         <div class="links">
             <a href="privacy.html">Privacy Policy</a>
             <a href="javascript:void(0)" onclick="copyEmail(this)" id="emailBtn">Contact Support</a>
         </div>
 
-<div id="toast">Email address copied!</div>
+        <div id="toast">Email address copied!</div>
         
         <div class="footer">
             &copy; 2026 RF Microwave Lab. All rights reserved.
