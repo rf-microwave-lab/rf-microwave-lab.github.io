@@ -121,8 +121,9 @@
             display: flex;
             align-items: center;
             padding: 10px 20px;
-            background-color: #2A2A2A; /* 改为碳灰色纯色背景 */
-            border: 1.5px solid transparent; /* 用透明边框占位，防止hover时大小跳动 */
+            background-color: #2A2A2A; 
+            /* 加上 1px 的微弱纯白半透明边框 */
+            border: 1px solid rgba(255, 255, 255, 0.12); 
             border-radius: 10px;
             color: #FFFFFF;
             text-decoration: none;
@@ -131,8 +132,9 @@
         }
         
         .download-btn:hover:not(.disabled) {
-            background-color: #81C784; /* 悬停时瞬间点亮为绿色 */
-            border-color: #81C784;
+            background-color: #81C784; 
+            /* 悬停时，边框颜色和背景一起变成亮绿色，做到无缝融合 */
+            border-color: #81C784; 
             color: #121212;
         }
         .download-btn.disabled {
