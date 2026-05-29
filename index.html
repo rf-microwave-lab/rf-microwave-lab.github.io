@@ -121,16 +121,18 @@
             display: flex;
             align-items: center;
             padding: 10px 20px;
-            background-color: transparent;
-            border: 1.5px solid #81C784;
+            background-color: #2A2A2A; /* 改为碳灰色纯色背景 */
+            border: 1.5px solid transparent; /* 用透明边框占位，防止hover时大小跳动 */
             border-radius: 10px;
             color: #FFFFFF;
             text-decoration: none;
             transition: all 0.2s ease;
             min-width: 160px;
         }
+        
         .download-btn:hover:not(.disabled) {
-            background-color: #81C784;
+            background-color: #81C784; /* 悬停时瞬间点亮为绿色 */
+            border-color: #81C784;
             color: #121212;
         }
         .download-btn.disabled {
