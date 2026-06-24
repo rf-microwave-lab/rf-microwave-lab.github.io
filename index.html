@@ -100,23 +100,28 @@
             gap: 20px;
         }
 
-        /* 手机带壳图及阴影 */
+        /* 手机垂直截图样式 */
         .phone-mockup {
             width: 45%; 
             filter: drop-shadow(0px 12px 25px rgba(0, 0, 0, 0.7)); 
             transition: transform 0.3s ease;
+
+            /* 🌟 新增：强行解决 Safari 阴影变直角/断裂的底层渲染补丁 */
+            -webkit-transform: translateZ(0); /* 强制 Safari 开启 3D 硬件加速，独立图层 */
+            transform: translateZ(0);
+            will-change: transform, filter;   /* 提前告知 WebKit 引擎该元素有动画和滤镜，防止其“装死” */
         }
         .phone-mockup:hover { transform: translateY(-5px); }
         
-        .hero-chart-container {
-            margin: 60px 0 20px 0;
-            text-align: center;
-            width: 100%;
-        }
+        /* 横向数据图 C位样式 */
         .hero-chart {
             width: 100%;
             max-width: 900px;
             filter: drop-shadow(0px 15px 35px rgba(0, 0, 0, 0.8));
+
+            /* 🌟 新增：防止 Safari 静态大图在滚动时阴影发生断裂 */
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
 
         /* 标题与列表排版 */
