@@ -97,19 +97,21 @@
             flex: 1.2; 
             display: flex;
             justify-content: center;
+            align-items: center; /* 🌟 新增：强制 Safari 识别内部图片的高度，防止塌陷溢出 */
             gap: 20px;
         }
 
-        /* 手机垂直截图样式 */
+        /* 手机带壳图及阴影 */
         .phone-mockup {
             width: 45%; 
+            display: block; /* 🌟 新增：将图片转为块级元素，消除内联元素的排版幽灵 */
+            height: auto;   /* 🌟 新增：严格锁定图片的纵横比高度 */
+            
             filter: drop-shadow(0px 12px 25px rgba(0, 0, 0, 0.7)); 
             transition: transform 0.3s ease;
-
-            /* 🌟 新增：强行解决 Safari 阴影变直角/断裂的底层渲染补丁 */
-            -webkit-transform: translateZ(0); /* 强制 Safari 开启 3D 硬件加速，独立图层 */
+            -webkit-transform: translateZ(0); 
             transform: translateZ(0);
-            will-change: transform, filter;   /* 提前告知 WebKit 引擎该元素有动画和滤镜，防止其“装死” */
+            will-change: transform, filter;   
         }
         .phone-mockup:hover { transform: translateY(-5px); }
         
