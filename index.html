@@ -164,6 +164,11 @@
 
         /* ================= 📱 手机端自适应逻辑 ================= */
         @media (max-width: 850px) {
+            .container {
+                margin: 15px 10px; /* 大幅缩小手机端的外边距，让卡片更贴合屏幕边缘 */
+                padding: 25px 15px; /* 缩小内边距，给文字留出更多横向空间 */
+            }
+            
             .content-section, .content-section.reverse {
                 flex-direction: column; /* 图文全变上下堆叠 */
                 gap: 30px;
@@ -176,10 +181,7 @@
                 width: 100%;
             }
             .phone-mockup {
-                width: 48%; /* 手机端保证两张图并排撑满宽度 */
-            }
-            .container {
-                padding: 25px; /* 手机端适当减少内边距 */
+                width: 48%; 
             }
         }
     </style>
@@ -195,11 +197,21 @@
         function copyEmail(element) {
             const email = "rf.microwave.lab@outlook.com";
             navigator.clipboard.writeText(email).then(() => {
+                // 1. 弹出底部 Toast 提示
                 showToast("Email address copied!");
-                const originalText = element.innerText;
-                element.innerText = "Email Copied!";
-                setTimeout(() => { element.innerText = originalText; }, 2000);
-            }).catch(err => { alert("Support Email: " + email); });
+                
+                // 2. 优雅的本体视觉反馈：文字不变，颜色变为主题绿，加一点透明度变化
+                element.style.color = "#81C784";
+                element.style.opacity = "0.7";
+                
+                // 3. 两秒后恢复原样
+                setTimeout(() => { 
+                    element.style.color = ""; 
+                    element.style.opacity = "1";
+                }, 2000);
+            }).catch(err => { 
+                alert("Support Email: " + email); 
+            });
         }
     </script>
 
