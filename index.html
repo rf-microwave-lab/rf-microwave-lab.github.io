@@ -102,15 +102,14 @@
 
         /* 手机垂直截图样式 */
         .phone-mockup {
-            width: 45%; /* 两张手机图并排 */
-            border-radius: 18px; /* 配合现代手机圆角 */
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6); /* 增加悬浮阴影感 */
+            width: 45%; 
+            /* 删掉原来的 border-radius 和 box-shadow */
+            filter: drop-shadow(0px 12px 25px rgba(0, 0, 0, 0.7)); /* 使用真正的透明通道阴影 */
             transition: transform 0.3s ease;
         }
         .phone-mockup:hover {
-            transform: translateY(-5px); /* 鼠标悬停轻微上浮效果 */
+            transform: translateY(-5px); 
         }
-
         /* 横向数据图 C位样式 */
         .hero-chart-container {
             margin: 60px 0;
@@ -120,8 +119,8 @@
         .hero-chart {
             width: 100%;
             max-width: 900px;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            /* 同样改用 drop-shadow */
+            filter: drop-shadow(0px 15px 35px rgba(0, 0, 0, 0.8));
         }
 
         /* 文字列表排版 */
