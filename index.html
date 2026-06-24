@@ -41,16 +41,16 @@
             border: none;
             padding: 0;
             margin-bottom: 30px;
-            font-size: 12px; /* 极小字号 */
-            color: #888888; /* 低调灰色 */
-            white-space: nowrap; /* 绝对不换行 */
+            font-size: 12px; 
+            color: #888888; 
+            white-space: nowrap; 
             letter-spacing: 0.3px;
         }
         .highlight-badge .badge-icon { 
             margin-right: 6px; 
             width: 14px; 
             height: 14px; 
-            color: #81C784; /* 仅保留盾牌的一点绿光 */
+            color: #81C784; 
         }
         
         /* 下载按钮 */
@@ -83,46 +83,55 @@
         .btn-text .small { font-size: 0.7em; opacity: 0.8; }
         .btn-text .big { font-size: 1.05em; font-weight: 600; }
 
-        /* 图文排版 */
+        /* ================= 🌟 终极图文排版区 🌟 ================= */
         .content-section {
             display: flex;
-            align-items: center;
+            align-items: stretch; /* 🌟 核心改动 1：强制容器撑开到内部最大高度，不再坍塌 */
             justify-content: space-between;
             gap: 40px;
             margin-top: 60px; 
         }
         .content-section.reverse { flex-direction: row-reverse; }
-        .text-column { flex: 1; min-width: 300px; }
+        
+        .text-column { 
+            flex: 1; 
+            min-width: 300px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; /* 🌟 核心改动 2：让文字在容器内自我居中对齐 */
+        }
+        
         .image-column {
             flex: 1.2; 
-            display: flex;
-            justify-content: center;
-            align-items: center; /* 🌟 新增：强制 Safari 识别内部图片的高度，防止塌陷溢出 */
+            display: grid; /* 🌟 核心改动 3：彻底抛弃不稳定的 Flexbox，改用钢铁般的 Grid 布局 */
+            grid-template-columns: 1fr 1fr; /* 强制平分两列 */
             gap: 20px;
+            align-items: center;
         }
 
         /* 手机带壳图及阴影 */
         .phone-mockup {
-            width: 45%; 
-            display: block; /* 🌟 新增：将图片转为块级元素，消除内联元素的排版幽灵 */
-            height: auto;   /* 🌟 新增：严格锁定图片的纵横比高度 */
-            
+            width: 100%; /* 🌟 核心改动 4：在 Grid 中占满各自的格子即可，高度绝对不会再溢出 */
+            height: auto;
+            display: block; 
             filter: drop-shadow(0px 12px 25px rgba(0, 0, 0, 0.7)); 
             transition: transform 0.3s ease;
-            -webkit-transform: translateZ(0); 
+            -webkit-transform: translateZ(0); /* 强制 GPU 加速修补 Safari 阴影 Bug */
             transform: translateZ(0);
-            will-change: transform, filter;   
+            will-change: transform, filter;
         }
         .phone-mockup:hover { transform: translateY(-5px); }
         
-        /* 横向数据图 C位样式 */
+        .hero-chart-container {
+            margin: 60px 0 20px 0;
+            text-align: center;
+            width: 100%;
+        }
         .hero-chart {
             width: 100%;
             max-width: 900px;
             filter: drop-shadow(0px 15px 35px rgba(0, 0, 0, 0.8));
-
-            /* 🌟 新增：防止 Safari 静态大图在滚动时阴影发生断裂 */
-            -webkit-transform: translateZ(0);
+            -webkit-transform: translateZ(0); /* 同理修补横向图阴影 */
             transform: translateZ(0);
         }
 
@@ -147,14 +156,14 @@
         .tag-available { color: #81C784; background: rgba(129, 199, 132, 0.15); border: 1px solid rgba(129, 199, 132, 0.3);}
         .tag-exclusive { color: #B0BEC5; background: rgba(176, 190, 197, 0.1); border: 1px solid rgba(176, 190, 197, 0.4);}
 
-        /* ===== 新的功能列表排版：标题独立成行 ===== */
+        /* 功能卡片列表 */
         ul { padding-left: 20px; color: #CCCCCC; margin-top: 0; }
         li { margin-bottom: 20px; line-height: 1.5;}
         strong { 
-            display: block; /* 让标题强制换行 */
+            display: block; 
             color: #81C784; 
             font-weight: 500; 
-            margin-bottom: 4px; /* 标题与正文拉开微小间距 */
+            margin-bottom: 4px; 
             font-size: 1.05em;
         }
         
@@ -184,10 +193,10 @@
             }
             .image-column {
                 width: 100%;
-                gap: 15px;
+                gap: 15px; /* 手机端缩小图片间距 */
             }
             .text-column { width: 100%; }
-            .phone-mockup { width: 48%; }
+            /* 注意：因为用了 Grid，不再需要像之前那样强行写 width: 48%，Grid 会自动完美平分！ */
             
             /* 手机端下载按钮并排 */
             .download-section {
