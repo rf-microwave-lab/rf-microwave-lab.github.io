@@ -18,13 +18,15 @@
             justify-content: center;
             min-height: 100vh;
         }
+        /* 容器宽度从 650px 扩大到 1050px */
         .container {
-            max-width: 650px;
+            max-width: 1050px;
             padding: 40px;
             background-color: #1E1E1E;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             text-align: left;
+            margin: 40px 20px; /* 增加外边距，防止手机端贴边 */
         }
         .header-center { text-align: center; }
         h1 { color: #FFFFFF; font-weight: 600; letter-spacing: 1px; margin-bottom: 5px;}
@@ -41,75 +43,9 @@
             margin-bottom: 20px;
             border: 1px solid #333;
         }
-        .badge-icon {
-            margin-right: 8px;
-            width: 16px;
-            height: 16px;
-        }
+        .badge-icon { margin-right: 8px; width: 16px; height: 16px; }
         
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 35px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 8px;
-        }
-        h3 { color: #FFFFFF; font-size: 1.1em; margin: 0; font-weight: 600;}
-        .platform-tag {
-            font-size: 0.72em;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: 6px;
-            letter-spacing: 0.3px; /* 适当减小间距，配合自然大小写 */
-        }
-        .tag-available { 
-            color: #81C784; 
-            background: rgba(129, 199, 132, 0.15);
-            border: 1px solid rgba(129, 199, 132, 0.3);
-        }
-        .tag-exclusive { 
-            color: #B0BEC5; 
-            background: rgba(176, 190, 197, 0.1); 
-            border: 1px solid rgba(176, 190, 197, 0.4);
-        }
-
-        ul { padding-left: 20px; color: #CCCCCC; margin-top: 15px; }
-        li { margin-bottom: 12px; }
-        strong { color: #81C784; font-weight: 500; }
-        .links { text-align: center; margin-top: 40px; }
-        .links a {
-            color: #A0A0A0;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 0.95em;
-            transition: color 0.2s;
-        }
-        .links a:hover { color: #FFFFFF; text-decoration: underline; }
-        .footer { text-align: center; margin-top: 40px; font-size: 0.85em; color: #555555; }
-        
-        #toast {
-            visibility: hidden;
-            min-width: 200px;
-            background-color: #333;
-            color: #81C784;
-            text-align: center;
-            border-radius: 12px;
-            padding: 12px;
-            position: fixed;
-            z-index: 1;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-            font-size: 0.9em;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            border: 1px solid #444;
-        }
-        #toast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-        
+        /* 下载按钮样式保持不变 */
         .download-section {
             display: flex;
             justify-content: center;
@@ -122,7 +58,6 @@
             align-items: center;
             padding: 10px 20px;
             background-color: #2A2A2A; 
-            /* 加上 1px 的微弱纯白半透明边框 */
             border: 1px solid rgba(255, 255, 255, 0.12); 
             border-radius: 10px;
             color: #FFFFFF;
@@ -130,46 +65,145 @@
             transition: all 0.2s ease;
             min-width: 160px;
         }
-        
         .download-btn:hover:not(.disabled) {
             background-color: #81C784; 
-            /* 悬停时，边框颜色和背景一起变成亮绿色，做到无缝融合 */
             border-color: #81C784; 
             color: #121212;
-        }
-        .download-btn.disabled {
-            opacity: 0.4;
-            filter: grayscale(0.8);
-            cursor: not-allowed;
-            border-color: #555;
         }
         .btn-icon { width: 24px; height: 24px; margin-right: 12px; fill: currentColor; }
         .btn-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
         .btn-text .small { font-size: 0.7em; opacity: 0.8; }
         .btn-text .big { font-size: 1.05em; font-weight: 600; }
-        .coming-soon-tag { font-size: 0.7em; background: #444; padding: 2px 6px; border-radius: 4px; margin-top: 4px; display: inline-block; }
+
+        /* ================= 🌟 核心排版框架 (Flexbox) ================= */
+        .content-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-top: 60px; /* 增加各版块间的留白 */
+        }
+        /* 让图片在左边的类 */
+        .content-section.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-column {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .image-column {
+            flex: 1.2; /* 给图片多分配一点空间 */
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* 手机垂直截图样式 */
+        .phone-mockup {
+            width: 45%; /* 两张手机图并排 */
+            border-radius: 18px; /* 配合现代手机圆角 */
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6); /* 增加悬浮阴影感 */
+            transition: transform 0.3s ease;
+        }
+        .phone-mockup:hover {
+            transform: translateY(-5px); /* 鼠标悬停轻微上浮效果 */
+        }
+
+        /* 横向数据图 C位样式 */
+        .hero-chart-container {
+            margin: 60px 0;
+            text-align: center;
+            width: 100%;
+        }
+        .hero-chart {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        /* 文字列表排版 */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        h3 { color: #FFFFFF; font-size: 1.2em; margin: 0; font-weight: 600;}
+        .platform-tag {
+            font-size: 0.72em;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.3px; 
+            white-space: nowrap;
+        }
+        .tag-available { color: #81C784; background: rgba(129, 199, 132, 0.15); border: 1px solid rgba(129, 199, 132, 0.3);}
+        .tag-exclusive { color: #B0BEC5; background: rgba(176, 190, 197, 0.1); border: 1px solid rgba(176, 190, 197, 0.4);}
+
+        ul { padding-left: 20px; color: #CCCCCC; margin-top: 0; }
+        li { margin-bottom: 16px; }
+        strong { color: #81C784; font-weight: 500; }
+        
+        /* 底部信息 */
+        .links { text-align: center; margin-top: 50px; }
+        .links a { color: #A0A0A0; text-decoration: none; margin: 0 15px; font-size: 0.95em; transition: color 0.2s;}
+        .links a:hover { color: #FFFFFF; text-decoration: underline; }
+        .footer { text-align: center; margin-top: 40px; font-size: 0.85em; color: #555555; }
+        
+        /* Toast 提示框 */
+        #toast {
+            visibility: hidden; min-width: 200px; background-color: #333; color: #81C784; text-align: center; border-radius: 12px; padding: 12px; position: fixed; z-index: 1; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 0.9em; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 1px solid #444;
+        }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        /* ================= 📱 手机端自适应逻辑 ================= */
+        @media (max-width: 850px) {
+            .content-section, .content-section.reverse {
+                flex-direction: column; /* 图文全变上下堆叠 */
+                gap: 30px;
+            }
+            .image-column {
+                width: 100%;
+                gap: 15px;
+            }
+            .text-column {
+                width: 100%;
+            }
+            .phone-mockup {
+                width: 48%; /* 手机端保证两张图并排撑满宽度 */
+            }
+            .container {
+                padding: 25px; /* 手机端适当减少内边距 */
+            }
+        }
     </style>
 </head>
-<script>
-function showToast(message) {
-    const toast = document.getElementById("toast");
-    toast.innerText = message;
-    toast.className = "show";
-    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
-}
-function copyEmail(element) {
-    const email = "rf.microwave.lab@outlook.com";
-    navigator.clipboard.writeText(email).then(() => {
-        showToast("Email address copied!");
-        const originalText = element.innerText;
-        element.innerText = "Email Copied!";
-        setTimeout(() => { element.innerText = originalText; }, 2000);
-    }).catch(err => { alert("Support Email: " + email); });
-}
-</script>
 <body>
+    <script>
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.innerText = message;
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+        function copyEmail(element) {
+            const email = "rf.microwave.lab@outlook.com";
+            navigator.clipboard.writeText(email).then(() => {
+                showToast("Email address copied!");
+                const originalText = element.innerText;
+                element.innerText = "Email Copied!";
+                setTimeout(() => { element.innerText = originalText; }, 2000);
+            }).catch(err => { alert("Support Email: " + email); });
+        }
+    </script>
+
     <div class="container">
         <div class="header-center">
             <h1>AntWave</h1>
@@ -183,43 +217,56 @@ function copyEmail(element) {
         </div>
 
         <div class="download-section">
-            <a href="https://apps.apple.com/app/id6762740189" class="download-btn" id="appleBtn">
+            <a href="https://apps.apple.com/app/id6762740189" class="download-btn">
                 <svg class="btn-icon" viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-                <div class="btn-text">
-                    <span class="small">Download on the</span>
-                    <span class="big">App Store</span>
-                </div>
+                <div class="btn-text"><span class="small">Download on the</span><span class="big">App Store</span></div>
             </a>
-
-            <a href="https://play.google.com/store/apps/details?id=com.rfmicrowavelab.antwave" class="download-btn" id="googleBtn">
+            <a href="https://play.google.com/store/apps/details?id=com.rfmicrowavelab.antwave" class="download-btn">
                 <svg class="btn-icon" viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-                <div class="btn-text">
-                    <span class="small">Get it on</span>
-                    <span class="big">Google Play</span>
-                </div>
+                <div class="btn-text"><span class="small">Get it on</span><span class="big">Google Play</span></div>
             </a>
         </div>
         
-        <div class="section-header">
-            <h3>Core Features (Essentials)</h3>
-            <span class="platform-tag tag-available">● Android & iOS</span>
+        <div class="content-section">
+            <div class="text-column">
+                <div class="section-header">
+                    <h3>Core Features (Essentials)</h3>
+                    <span class="platform-tag tag-available">● Android & iOS</span>
+                </div>
+                <ul>
+                    <li><strong>20+ Engineering Modules</strong> — A comprehensive suite of high-precision tools including Antenna Gain, Beamwidth, Axial Ratio, Free Space Loss, Doppler Shift, Reflection Coefficient, and more.</li>
+                    <li><strong>Transmission Line & Waveguide</strong> — Quick calculation of characteristic impedance, waveguide parameters, and skin depth.</li>
+                    <li><strong>Phased Array Basics</strong> — Calculate optimal element spacing and maximum scan angle limits to avoid grating lobes.</li>
+                    <li><strong>Professional Standard</strong> — All algorithms are calibrated to industry standards. Clean, offline, and 100% ads-free.</li>
+                </ul>
+            </div>
+            <div class="image-column">
+                <img src="core-1.png" alt="Axial Ratio Calculation" class="phone-mockup">
+                <img src="core-2.png" alt="Satellite Finder" class="phone-mockup">
+            </div>
         </div>
-        <ul>
-            <li><strong>20+ Engineering Modules</strong> — A comprehensive suite of high-precision tools including Antenna Gain, Beamwidth, Axial Ratio, Free Space Loss, Doppler Shift, Reflection Coefficient, and more.</li>
-            <li><strong>Transmission Line & Waveguide</strong> — Quick calculation of characteristic impedance, waveguide parameters, and skin depth.</li>
-            <li><strong>Phased Array Basics</strong> — Calculate optimal element spacing and maximum scan angle limits to avoid grating lobes.</li>
-            <li><strong>Professional Standard</strong> — All algorithms are calibrated to industry standards. Clean, offline, and 100% ads-free.</li>
-        </ul>
 
-        <div class="section-header">
-            <h3>Advanced System Analysis (Pro)</h3>
-            <span class="platform-tag tag-exclusive">● iOS (Pro Features)</span>
+        <div class="hero-chart-container">
+            <img src="hero-chart.png" alt="Atmospheric Noise Chart" class="hero-chart">
         </div>
-        <ul>
-            <li><strong>Phased Array Performance</strong> — Compute transmit EIRP and receive G/T characteristics for both active and passive array systems.</li>
-            <li><strong>Link Budget Analysis</strong> — Microwave, satellite, radar and RF link calculations with system parameter support.</li>
-            <li><strong>Atmospheric Modeling</strong> — Interactive charts with real-time HUD readout. Sky noise temperature, atmospheric and rain attenuation data based on ITU-R P.372/P.676/P.838 (1 GHz – 1 THz).</li> 
-        </ul>
+
+        <div class="content-section reverse">
+            <div class="text-column">
+                <div class="section-header">
+                    <h3>Advanced System Analysis (Pro)</h3>
+                    <span class="platform-tag tag-exclusive">● iOS (Pro Features)</span>
+                </div>
+                <ul>
+                    <li><strong>Phased Array Performance</strong> — Compute transmit EIRP and receive G/T characteristics for both active and passive array systems.</li>
+                    <li><strong>Link Budget Analysis</strong> — Microwave, satellite, radar and RF link calculations with system parameter support.</li>
+                    <li><strong>Atmospheric Modeling</strong> — Interactive charts with real-time HUD readout. Sky noise temperature, atmospheric and rain attenuation data based on ITU-R P.372/P.676/P.838 (1 GHz – 1 THz).</li> 
+                </ul>
+            </div>
+            <div class="image-column">
+                <img src="pro-1.png" alt="Receive Array G/T" class="phone-mockup">
+                <img src="pro-2.png" alt="RF Link Analysis" class="phone-mockup">
+            </div>
+        </div>
         
         <div class="links">
             <a href="privacy.html">Privacy Policy</a>
